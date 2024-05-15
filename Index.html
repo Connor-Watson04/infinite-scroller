@@ -6,17 +6,23 @@
     <link
       rel="icon"
       type="image/png"
-      href="http://www.google.com/s2/favicons?domain=css-tricks.com"
+      href="http://www.google.com/s2/favicons?domain=www.jacinto.design"
     />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      rel="stylesheet"
-    />
+
     <link href="Style.css" rel="stylesheet" />
 
-    <title>Template</title>
+    <title>Infinite Scroll</title>
   </head>
   <body>
+    <!-- Title -->
+    <h1>Unsplash API - Infinite Scroller</h1>
+    <!-- loader -->
+    <div class="loader" id="loader" hidden>
+      <img src="Loader-Icon.svg" alt="loading" />
+    </div>
+
+    <!-- image container -->
+    <div class="image-container" id="image-container"></div>
     <!-- JavaScript -->
     <script src="Script.js"></script>
   </body>
