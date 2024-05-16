@@ -5,12 +5,19 @@ let ready = false;
 let imagesLoaded = 0;
 let totalImages = 0;
 let photosArray = [];
+let isInitialLoad = true;
 
 //Unsplash API
 const search = "Japan";
-const count = 30;
+
+//first page load for performance
+let initialCount = 5;
 const apiKey = "PA1ByiZokjCgb1TXlM0AXtu7ayp7Qt_KnbWwf3FM2nI";
-const unsplashApiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}&query=${search}`;
+let unsplashApiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${initialCount}&query=${search}`;
+
+function updateAPIURLWithNewCount(picCount) {
+  unsplashApiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${picCount}&query=${search}`;
+}
 
 //check if all images are loaded
 function imageLoaded() {
@@ -64,6 +71,11 @@ async function getPhotos() {
     const response = await fetch(unsplashApiUrl);
     photosArray = await response.json();
     displayPhotos();
+    //if initial load is true then change api count to 30 and set initial load to false
+    if (isInitialLoad) {
+      updateAPIURLWithNewCount(30);
+      isInitialLoad = false;
+    }
   } catch (error) {
     //catch errors
   }
